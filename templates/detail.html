@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card mt-3" style="width: 50rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{page.title}}</h5>
+        <p class="card-text">{{page.text}}</p>
+    </div>
+</div>
+<div class="card mt-3" style="width: 50rem;" id="commCard" data-id="{{ page.id }}">
+    <form action="" method="post" id="createCommForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="button" class="btn btn-success" id="createButton">Add comment</button>
+    </form>
+</div>
+<div id="commList">
+    {% for comment in page.comment_set.all %}
+    <div class="alert alert-warning alert-dismissible fade show mt-1" role="alert" style="width: 50rem;" id="pageCard"
+        data-id="{{ comment.id }}">
+        <strong>{{comment.name}}: </strong>{{comment.comment}}
+        <button type=" button" class="close" data-dismiss="alert" aria-label="Close" data-id="{{ comment.id }}">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

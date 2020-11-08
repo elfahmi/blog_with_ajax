@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for page in pages %}
+<div class="card mt-3" style="width: 50rem;">
+    <div class="card-body">
+        <a href="{% url 'detail' page.id %}">
+            <h5 class="card-title">{{page.title}}</h5>
+        </a>
+        <p class="card-text">{{page.text}}</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
